@@ -3,6 +3,7 @@ import sklearn.neighbors
 import pickle
 import os
 import torch
+import fickling
 
 def train(model_path=os.path.join('resources', 'knn_model', 'knn.clf'),
           n_neighbors=3, knn_algo='ball tree'):
@@ -26,7 +27,7 @@ def knn_predict(face_embedding, embeddings,
                 knn_threshold=0.45
                 ):
     with open(model_path, "rb") as f:
-        knn_clf = pickle.load(f)
+        knn_clf = fickling.load(f)
     closest_distances, index = knn_clf.kneighbors(face_embedding, n_neighbors=1)
     print(int(index[0][0]))
     # print(closest_distances)
